@@ -1,0 +1,115 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile_linux                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/31 19:44:11 by ixu               #+#    #+#              #
+#    Updated: 2024/04/02 15:13:44 by ixu              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Name of the program
+NAME := fdf
+
+# Compiler and flags
+cc := CC
+CFLAGS := -Wall -Wextra -Werror
+
+# Color scheme
+COLOR_BLUE := \033[0;34m
+COLOR_BRIGHT_RED := \033[0;91m
+COLOR_END := \033[0m
+
+# Directory locations
+SRCS_DIR := srcs/
+SRCS_BONUS_DIR := srcs_bonus/
+OBJS_DIR := objs/
+LIBFT_DIR := libft/
+MLX42_DIR := MLX42/build/
+
+# Source file names for mandatory and bonus parts
+SRCS := fdf.c \
+		read_file.c \
+		color.c \
+		rgba.c \
+		gradient.c \
+		init.c \
+		free.c \
+		error.c \
+		projection.c \
+		transform.c \
+		draw.c
+
+SRCS_BONUS := fdf_bonus.c \
+				read_file_bonus.c \
+				color_bonus.c \
+				rgba_bonus.c \
+				gradient_bonus.c \
+				init_bonus.c \
+				free_bonus.c \
+				error_bonus.c \
+				projection_bonus.c \
+				transform_bonus.c \
+				draw_bonus.c
+
+# Object files with paths
+OBJS := $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+OBJS_BONUS := $(addprefix $(OBJS_DIR), $(SRCS_BONUS:.c=.o))
+
+# Libraries with paths
+LIBFT := $(LIBFT_DIR)libft.a
+MLX := $(MLX42_DIR)libmlx42.a
+
+all: $(NAME)
+
+$(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT) $(MLX) .base
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) -Iinclude -ldl -lglfw -pthread -lm -L$(MLX42_DIR) -lmlx42 -L$(LIBFT_DIR) -lft
+	@echo "$(COLOR_BRIGHT_RED)Built $(NAME) (for mandatory part)$(COLOR_END)"
+
+.base:
+	@rm -f .bonus
+	@touch .base
+
+bonus: .bonus
+
+.bonus: $(OBJS_DIR) $(OBJS_BONUS) $(LIBFT) $(MLX)
+	@$(CC) -o $(NAME) $(OBJS_BONUS) $(LIBFT) $(MLX) -Iinclude -ldl -lglfw -pthread -lm -L$(MLX42_DIR) -lmlx42 -L$(LIBFT_DIR) -lft
+	@rm -f .base
+	@touch .bonus
+	@echo "$(COLOR_BRIGHT_RED)Built $(NAME) (for bonus part)$(COLOR_END)"
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+	@echo "Built $(OBJS_DIR) directory"
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Building $@"
+
+$(OBJS_DIR)%.o: $(SRCS_BONUS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Building $@"
+
+$(LIBFT):
+	@$(MAKE) -s -C $(LIBFT_DIR)
+
+$(MLX):
+	@cd MLX42 && cmake -B build && cmake --build build -j4
+	@$(MAKE) -s -C $(MLX42_DIR)
+
+clean:
+	@rm -fr $(OBJS_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(MLX42_DIR) clean
+	@rm -f .bonus
+	@rm -f .base
+	@echo "$(COLOR_BLUE)Removed fdf object files$(COLOR_END)"
+	@echo "$(COLOR_BLUE)Cleaned up libft and MLX42$(COLOR_END)"
+ 
+fclean: clean
+	@rm -f $(NAME)
+	@echo "$(COLOR_BLUE)Removed $(NAME)$(COLOR_END)"
+
+re: fclean all
