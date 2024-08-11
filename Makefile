@@ -6,7 +6,7 @@
 #    By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 19:44:04 by ixu               #+#    #+#              #
-#    Updated: 2024/08/11 16:27:22 by ixu              ###   ########.fr        #
+#    Updated: 2024/08/11 17:26:08 by ixu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS := fdf.c \
 		rgba.c \
 		gradient.c \
 		init.c \
+		hooks.c \
 		free.c \
 		error.c \
 		projection.c \

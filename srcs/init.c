@@ -6,7 +6,7 @@
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:50:07 by ixu               #+#    #+#             */
-/*   Updated: 2024/08/11 15:09:47 by ixu              ###   ########.fr       */
+/*   Updated: 2024/08/11 16:56:41 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,8 @@ void	data_init(t_fdf **data)
 	get_coords_to_centralize(*data);
 	(*data)->move_x = 0;
 	(*data)->move_y = 0;
+	(*data)->gradient_colors[0][0] = CYAN;
+	(*data)->gradient_colors[0][1] = BLUE;
+	(*data)->gradient_colors[1][0] = YELLOW;
+	(*data)->gradient_colors[1][1] = RED;
 }

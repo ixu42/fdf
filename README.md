@@ -31,12 +31,11 @@ make -f Makefile_linux && ./fdf maps/42.fdf
 
 ACTIONS                                   | KEYS / MOUSE
 | :---                                    | :---:
-Apply colors                              | C
+Change colors                             | C
 Translate                                 | WSAD
 Rotate                                    | Arrow keys up, down, left, right
 Zoom                                      | Numpad +- / Mouse scrolling up/down
-Increment height                          | X
-Decrement height                          | Z
+Change height                             | XZ / scrolling side mousewheel (applicable to certain mouse e.g. MX Master 3)
 Switch to parallel projection             | P
 Switch to isometric projection (default)  | I
 Reset to initial state                    | Space

@@ -12,71 +12,6 @@
 
 #include "../include/fdf.h"
 
-static void	translate_rotate_zoom(t_fdf *data)
-{
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		data->move_y -= data->speed;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		data->move_x += data->speed;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		data->move_y += data->speed;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		data->move_x -= data->speed;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
-		data->angle_x += 0.02;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->angle_y += 0.02;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-		data->angle_x -= 0.02;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->angle_y -= 0.02;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_SUBTRACT))
-		data->scale *= 0.99;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_ADD))
-		data->scale *= 1.01;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_Z))
-		data->z_scale -= 0.03;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_X))
-		data->z_scale += 0.03;
-}
-
-static void	ft_hook(void *param)
-{
-	t_fdf	*data;
-
-	data = param;
-	translate_rotate_zoom(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(data->mlx);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_P))
-		data->mode = 'p';
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_I))
-		data->mode = 'i';
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_C))
-		data->color_mode = 1;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_SPACE))
-		data_init(&data);
-	draw_bg_color(data);
-	draw(data);
-}
-
-// xdelta for detecting a mousewheel that goes along the X (e.g.: MX Master 3)
-
-static void	my_scrollhook(double xdelta, double ydelta, void *param)
-{
-	t_fdf	*data;
-
-	data = param;
-	if (ydelta > 0)
-		data->scale *= 1.02;
-	else if (ydelta < 0)
-		data->scale *= 0.98;
-	if (xdelta < 0)
-		data->z_scale -= 0.03;
-	else if (xdelta > 0)
-		data->z_scale += 0.03;
-}
-
 static void	win_img_init(t_fdf *data)
 {
 	data->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "fil de fer", true);
@@ -114,6 +49,7 @@ int	main(int argc, char **argv)
 	draw_bg_color(data);
 	draw(data);
 	mlx_scroll_hook(data->mlx, my_scrollhook, data);
+	mlx_key_hook(data->mlx, key_hook, data);
 	mlx_loop_hook(data->mlx, ft_hook, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);

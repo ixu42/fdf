@@ -6,7 +6,7 @@
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:13:27 by ixu               #+#    #+#             */
-/*   Updated: 2024/08/11 15:09:57 by ixu              ###   ########.fr       */
+/*   Updated: 2024/08/11 16:57:50 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ uint32_t	get_color(t_fdf *data, t_3d_vector v)
 	uint32_t	color;
 
 	if (data->color_mode && v.z > 0)
-		color = YELLOW;
+		color = data->gradient_colors[data->color_mode - 1][0];
 	else if (data->color_mode && v.z == 0)
-		color = RED;
+		color = data->gradient_colors[data->color_mode - 1][1];
 	else
 		color = data->colors[(int)v.y][(int)v.x];
 	return (color);

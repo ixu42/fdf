@@ -6,7 +6,7 @@
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:15:17 by ixu               #+#    #+#             */
-/*   Updated: 2024/08/11 15:08:36 by ixu              ###   ########.fr       */
+/*   Updated: 2024/08/11 17:25:36 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_fdf
 	int				depth;
 	int				**z;
 	uint32_t		**colors;
+	uint32_t		gradient_colors[2][2];
 	double			scale;
 	double			z_scale;
 	double			speed;
@@ -104,6 +105,11 @@ uint32_t	get_grad(t_3d_vector v1, t_3d_vector v2, t_3d_vector curr);
 // initializing data
 void		get_coords_to_centralize(t_fdf *data);
 void		data_init(t_fdf **data);
+
+// handling keyboard and mouse events
+void		my_scrollhook(double xdelta, double ydelta, void *param);
+void		key_hook(mlx_key_data_t keydata, void *param);
+void		ft_hook(void *param);
 
 // funcs for freeing
 void		free_arr(char **arr);
