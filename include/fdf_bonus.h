@@ -6,7 +6,7 @@
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:15:17 by ixu               #+#    #+#             */
-/*   Updated: 2024/04/02 15:55:37 by ixu              ###   ########.fr       */
+/*   Updated: 2024/08/11 14:34:27 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-// norminette breaks when including <float.h>
+// note that norminette breaks when including <float.h>
 # include <float.h>
 
 # define WIN_WIDTH 1600
@@ -32,6 +32,14 @@
 # define ERR_MALLOC "malloc error"
 # define ERR_ARGS "error: invalid arguments"
 # define EX_ARGS "usage: ./fdf map.fdf"
+
+// color scheme
+# define BLACK 0x000000ff
+# define WHITE 0xffffffff
+# define BLUE 0x3d4c99ff
+# define CYAN 0x67f2d1ff
+# define RED 0x3D0A0Aff
+# define YELLOW 0xF5B100ff
 
 typedef struct s_color
 {
