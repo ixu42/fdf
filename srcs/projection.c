@@ -6,7 +6,7 @@
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:03:46 by ixu               #+#    #+#             */
-/*   Updated: 2024/01/28 22:23:38 by ixu              ###   ########.fr       */
+/*   Updated: 2024/08/11 15:19:28 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,11 @@ void	isometric(t_3d_vector *v)
 	angle_x = atan(sqrt(2));
 	multiply_vector_by_matrix(v, get_rotation_matrix(angle_z, 'z'));
 	multiply_vector_by_matrix(v, get_rotation_matrix(angle_x, 'x'));
+}
+
+void	parallel(t_3d_vector *v)
+{
+	multiply_vector_by_matrix(v, get_rotation_matrix(0, 'x'));
+	multiply_vector_by_matrix(v, get_rotation_matrix(0, 'y'));
+	multiply_vector_by_matrix(v, get_rotation_matrix(0, 'z'));
 }

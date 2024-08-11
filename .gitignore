@@ -1,6 +1,5 @@
 *.o
 *.a
 fdf
-.base
-.bonus
 *.DS_Store
+*.vscode/

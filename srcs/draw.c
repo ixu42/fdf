@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 09:25:00 by ixu               #+#    #+#             */
-/*   Updated: 2024/01/28 20:50:07 by ixu              ###   ########.fr       */
+/*   Created: 2024/01/28 22:13:48 by ixu               #+#    #+#             */
+/*   Updated: 2024/08/11 15:09:59 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	draw_bg_color(t_fdf *data)
 	{
 		x = -1;
 		while (++x < (int)(data->image->width))
-			mlx_put_pixel(data->image, x, y, 0x000000ff);
+			mlx_put_pixel(data->image, x, y, BLACK);
 	}
 }

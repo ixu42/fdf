@@ -22,11 +22,11 @@ In the project, [MLX42](https://github.com/codam-coding-college/MLX42) graphics 
 To run the program with the map 42.fdf for example  
 *On macOS*
 ```
-make bonus && ./fdf maps/42.fdf
+make && ./fdf maps/42.fdf
 ```
 *On Linux*
 ```
-make -f Makefile_linux bonus && ./fdf maps/42.fdf
+make -f Makefile_linux && ./fdf maps/42.fdf
 ```
 
 ACTIONS                                   | KEYS / MOUSE

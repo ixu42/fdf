@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 11:40:16 by ixu               #+#    #+#             */
-/*   Updated: 2024/04/02 15:56:32 by ixu              ###   ########.fr       */
+/*   Created: 2024/01/28 22:15:17 by ixu               #+#    #+#             */
+/*   Updated: 2024/08/11 15:08:36 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-// norminette breaks when including <float.h>
 # include <float.h>
 
 # define WIN_WIDTH 1600
@@ -32,6 +31,14 @@
 # define ERR_MALLOC "malloc error"
 # define ERR_ARGS "error: invalid arguments"
 # define EX_ARGS "usage: ./fdf map.fdf"
+
+// color scheme
+# define BLACK 0x000000ff
+# define WHITE 0xffffffff
+# define BLUE 0x3d4c99ff
+# define CYAN 0x67f2d1ff
+# define RED 0x3D0A0Aff
+# define YELLOW 0xF5B100ff
 
 typedef struct s_color
 {
@@ -64,11 +71,15 @@ typedef struct s_fdf
 	int				depth;
 	int				**z;
 	uint32_t		**colors;
-	double			x_to_center;
-	double			y_to_center;
-	int				color_mode;
 	double			scale;
 	double			z_scale;
+	double			speed;
+	double			move_x;
+	double			move_y;
+	double			x_to_center;
+	double			y_to_center;
+	char			mode;
+	int				color_mode;
 	double			angle_x;
 	double			angle_y;
 	double			angle_z;

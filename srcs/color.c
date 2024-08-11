@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 13:44:14 by ixu               #+#    #+#             */
-/*   Updated: 2024/01/28 20:38:17 by ixu              ###   ########.fr       */
+/*   Created: 2024/01/28 22:13:27 by ixu               #+#    #+#             */
+/*   Updated: 2024/08/11 15:09:57 by ixu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ uint32_t	get_color(t_fdf *data, t_3d_vector v)
 	uint32_t	color;
 
 	if (data->color_mode && v.z > 0)
-		color = 0x67f2d1ff;
+		color = YELLOW;
 	else if (data->color_mode && v.z == 0)
-		color = 0x3d4c99ff;
+		color = RED;
 	else
 		color = data->colors[(int)v.y][(int)v.x];
 	return (color);
