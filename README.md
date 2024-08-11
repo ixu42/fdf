@@ -20,13 +20,13 @@ In the project, [MLX42](https://github.com/codam-coding-college/MLX42) graphics 
 
 ## Usage
 To run the program with the map 42.fdf for example  
-*On macOS*
+*On Linux*
 ```
 make && ./fdf maps/42.fdf
 ```
-*On Linux*
+*On macOS*
 ```
-make -f Makefile_linux && ./fdf maps/42.fdf
+make -f Makefile_mac && ./fdf maps/42.fdf
 ```
 
 ACTIONS                                   | KEYS / MOUSE

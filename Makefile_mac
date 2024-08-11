@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_linux                                     :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ixu <ixu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/31 19:44:11 by ixu               #+#    #+#              #
-#    Updated: 2024/08/11 17:26:02 by ixu              ###   ########.fr        #
+#    Created: 2024/01/31 19:44:04 by ixu               #+#    #+#              #
+#    Updated: 2024/08/11 17:26:08 by ixu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME := fdf
 # Compiler and flags
 cc := CC
 CFLAGS := -Wall -Wextra -Werror
+MLX_FLAGS := -framework Cocoa -framework OpenGL -framework IOKit
 
 # Color scheme
 COLOR_BLUE := \033[0;34m
@@ -27,6 +28,7 @@ SRCS_DIR := srcs/
 OBJS_DIR := objs/
 LIBFT_DIR := libft/
 MLX42_DIR := MLX42/build/
+GLFW_DIR := /Users/ixu/.brew/opt/glfw/lib/
 
 # Source file names
 SRCS := fdf.c \
@@ -52,7 +54,7 @@ MLX := $(MLX42_DIR)libmlx42.a
 all: $(NAME)
 
 $(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) -Iinclude -ldl -lglfw -pthread -lm -L$(MLX42_DIR) -lmlx42 -L$(LIBFT_DIR) -lft
+	@$(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS) -Iinclude -lglfw -L$(GLFW_DIR) -L$(MLX42_DIR) -lmlx42 -L$(LIBFT_DIR) -lft
 	@echo "$(COLOR_BRIGHT_GREEN)Built $(NAME)$(COLOR_END)"
 
 $(OBJS_DIR):
